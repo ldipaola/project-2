@@ -1,4 +1,108 @@
+/* Applied to all pages */
+body {
+  font-family: 'Jura', sans-serif;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.logo-container {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+/* End of applied to all pages */
+
+/* Sign Up and Login form styling */
+h2 {
+  color: white;
+}
+
+hr {
+  height: 3px;
+  border-top-style: none;
+  background: linear-gradient(to right, #00a3cc,#f2f2f2);
+}
+
 form.signup,
 form.login {
-  margin-top: 50px;
+  margin-top: 30px;
+}
+
+.form-box {
+  margin-top: 3rem;
+  background-color: rgb(51, 51, 51, 0.7);
+  max-width: 50vw;
+  min-width: 280px;
+  padding: 4rem;
+  color: white;
+  border-radius: 7px;
+}
+
+.formBtn {
+  background-color: #1a1a1a;
+  color: white;
+  margin-top: 20px;
+  border-style: none;
+  padding: 1rem;
+  width: 100px;
+}
+
+.formBtn:hover {
+  background-color: #1a1a1a;
+  color: white;
+  margin-top: 20px;
+}
+
+.formBtn span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  font-weight: 600;
+}
+
+.formBtn:hover span {
+  padding-right: 25px;
+}
+
+.formBtn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.formBtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.here-link {
+  color: #00a3cc;
+  font-weight: 900;
+}
+/* End of Sign Up and Login form styling */
+
+/* Members Page styling */
+#username {
+  color: white;
+}
+
+.main-box {
+  background-color: #e6e6e6;
+  border-radius: 8px;
 }
