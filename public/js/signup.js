@@ -1,4 +1,4 @@
-console.log("testing signup.js")
+console.log("testing signup.js");
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpForm = $("form.signup");

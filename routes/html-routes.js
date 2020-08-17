@@ -1,9 +1,7 @@
 // Requiring path to so we can use relative routes to our HTML files
-const path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-const { isatty } = require("tty");
 
 const db = require("../models");
 
@@ -33,7 +31,7 @@ module.exports = function(app) {
     db.Category.findAll({}).then(categories => {
       console.log(categories);
       // [{id: 1, category: "fuel", budget: 10000}, {category: "fuel"}, {category: "fuel"}]
-      const data = categories.map( cat => {
+      const data = categories.map(cat => {
         //{category: "fuel"}
         return {
           cat: cat.category
