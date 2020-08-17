@@ -26,10 +26,6 @@ module.exports = function(sequelize, DataTypes) {
     // Associating User with Expenses
     // When an User is deleted, also delete any associated Expenses
     User.hasMany(models.Expenses, {
-      foreignKey: {
-        name: "userExpenses",
-        allowNull: false
-      },
       onDelete: "cascade"
     });
   };

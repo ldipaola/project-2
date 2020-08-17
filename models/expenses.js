@@ -16,9 +16,14 @@ module.exports = function(sequelize, DataTypes) {
   Expenses.associate = function(models) {
     // Expenses should belong to a category
     // Expenses can't be created without a category due to the foreign key constraint
+    Expenses.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
     Expenses.belongsTo(models.Category, {
       foreignKey: {
-        name: "categoryId",
         allowNull: false
       }
     });
