@@ -1,0 +1,73 @@
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/logout">
+          Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Welcome <span class="member-name"></span></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="budgetContainer">
+    <div class="col-md-4">
+      <form class="col-md-6">
+        <label for="fname">Your Budget:</label><br>
+        <input type="text" id="budget" placeholder="$"><br>
+        <input type="submit" value="Submit">
+      </form>
+      <form class="col-md-6">
+        <label for="fname">Budget left:</label><br>
+        <input type="text" id="budget" placeholder="$"><br>
+      </form>
+      
+      <div class="chartContainer">
+        <div class="col-md-12">
+          <p>in here we will have a chart to summarize our
+            spending ( the position of this container should be right below you budget) </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add expenses
+    </button>
+<!-- enter the amount you have spend -->
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <div class="input-group-append">
+          <span class="input-group-text">.00</span>
+        </div>
+      </div>
+      <!-- enter the description on what you have spend on -->
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <!-- select the category -->
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>Grocery</option>
+          <option>Fuel</option>
+          <option>Utility</option>
+          <option>Cloths</option>
+          <option>Entertainment</option>
+        </select>
+      </div>
+    </div>
+  </div>
