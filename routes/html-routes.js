@@ -3,6 +3,9 @@ const path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+const { isatty } = require("tty");
+
+const db = require("../models");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -26,9 +29,21 @@ module.exports = function(app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", (req, res) => {
+  app.get("/members", isAuthenticated, (req, res) => {
+    db.Category.findAll({}).then(categories => {
+      console.log(categories);
+      // [{id: 1, category: "fuel", budget: 10000}, {category: "fuel"}, {category: "fuel"}]
+      const data = categories.map( cat => {
+        //{category: "fuel"}
+        return {
+          cat: cat.category
+        };
+      });
+
+      console.log(data);
+      res.render("members", { cats: data });
+    });
     // res.sendFile(path.join(__dirname, "../public/members.html"));
     // ***this is the original route that brings you to the members webpage
-    res.render("members");
   });
 };

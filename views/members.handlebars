@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="dropdown">
+  {{!-- <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Add expenses
     </button>
@@ -58,16 +58,39 @@
         </div>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
       </div>
-      <!-- select the category -->
+  
+      
+    </div>
+        <!-- select the category -->
       <div class="form-group">
         <label for="exampleFormControlSelect1">Example select</label>
         <select class="form-control" id="exampleFormControlSelect1">
-          <option>Grocery</option>
-          <option>Fuel</option>
-          <option>Utility</option>
-          <option>Cloths</option>
-          <option>Entertainment</option>
+         {{#each cats}}
+         <option> {{cat}} </option>
+          {{/each}}
         </select>
       </div>
-    </div>
+  </div> --}}
+
+  <form>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">category</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+     {{#each cats}}
+         <option> {{cat}} </option>
+          {{/each}}
+    </select>
   </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1">Description</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Description">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">amount</label>
+    <input type="text" class="form-control" id="exampleFormControlTextarea1"></input>
+  </div>
+  <button type="button" class="btn btn-primary">submit</button>
+</form>
+
+
+  

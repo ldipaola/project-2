@@ -106,3 +106,11 @@ form.login {
   background-color: #e6e6e6;
   border-radius: 8px;
 }
+
+.form-group {
+  color: white;
+}
+
+.budgetContainer{
+  color: white;
+}
