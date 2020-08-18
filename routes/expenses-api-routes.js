@@ -1,4 +1,7 @@
 const db = require("../models");
+// const Highcharts = require("highchart");
+// // Load module after Highcharts is loaded
+// require("highcharts/modules/exporting")(Highcharts);
 
 module.exports = function(app) {
   // Get route for getting all expenses
@@ -13,6 +16,7 @@ module.exports = function(app) {
         }
       }).then(expenses => {
         res.json(expenses);
+        // Highcharts.chart("container", { expenses });
       });
     }
   });

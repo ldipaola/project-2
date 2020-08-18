@@ -98,20 +98,104 @@ form.login {
 /* End of Sign Up and Login form styling */
 
 /* Members Page styling */
-#username {
+nav a {
   color: white;
+}
+
+#logoutLink {
+  margin-top: 7px;
+}
+
+.hi-user {
+  color: black;
+}
+
+h1, p {
+  color: black;
 }
 
 .main-box {
-  background-color: #e6e6e6;
+  padding-top: 3rem;
+  background-color: rgb(255, 255, 255, 0.8);
   border-radius: 8px;
+  height: 100vh;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-.form-group {
+#editDropDown {
+  background-color: transparent;
+  outline: none;
+  border: 0px;
+  padding: 0px;
+  color: #00a3cc;
+}
+
+#editDropDown:hover {
+  color: #00a3cc;
+  text-decoration: underline;
+}
+
+.second-row {
+  margin-top: 3rem;
+}
+
+#dropdownMenuButton {
+  background-color: black;
   color: white;
 }
 
-.budgetContainer{
+.dropdown-menu {
+  background-color: rgb(0, 122, 153, 0.9);
+  border: transparent;
+  border: none;
   color: white;
+  padding: 3rem;
 }
 
+.input-group {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.expBtn {
+  background-color: #1a1a1a;
+  color: white;
+  border-style: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 90px;
+}
+
+.expBtn:hover {
+  background-color: #1a1a1a;
+  color: white;
+  margin-top: 1rem;
+}
+
+.expBtn span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  font-weight: 600;
+}
+
+.expBtn:hover span {
+  padding-right: 20px;
+}
+
+.expBtn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.expBtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* End of Members Page styling */
