@@ -11,8 +11,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/members");
     }
-    // res.sendFile(path.join(__dirname, "../public/signup.html"));
-    res.render("signup");
+    res.render("login");
   });
 
   app.get("/login", (req, res) => {
@@ -21,27 +20,31 @@ module.exports = function(app) {
       res.redirect("/members");
       console.log("has account");
     }
-    // res.sendFile(path.join(__dirname, "../public/login.html"));
     res.render("login");
+  });
+
+  app.get("/signup", (req, res) => {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+      console.log("has account");
+    }
+    res.render("signup");
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
     db.Category.findAll({}).then(categories => {
-      console.log(categories);
-      // [{id: 1, category: "fuel", budget: 10000}, {category: "fuel"}, {category: "fuel"}]
-      const data = categories.map(cat => {
-        //{category: "fuel"}
+      // Mapping returned sequelize object as unable to pass directly to handlebars
+      const data = categories.map(categories => {
         return {
-          cat: cat.category
+          categories: categories.category
         };
       });
 
       console.log(data);
-      res.render("members", { cats: data });
+      res.render("members", { categories: data });
     });
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
-    // ***this is the original route that brings you to the members webpage
   });
 };
