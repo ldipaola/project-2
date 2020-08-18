@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-empty-function
 $(document).ready(() => {
-  const budgetList = $("chartContainer");
+  // const budgetList = $("chartContainer");
   const submitBudgetBtn = $("#submitBudgetBtn");
   const budget = $("#budget");
   // const renderList = $("#renderList");
@@ -38,23 +38,23 @@ $(document).ready(() => {
     //   nameInput.val("");
     // });
   }
-  function expenseRow(userData) {
-    const newTr = $("<tr>");
-    newTr.data("user", userData);
-    newTr.append("<td>" + userData.name + "</td>");
-    if (userData.Posts) {
-      newTr.append("<td> " + userData.Posts.length + "</td>");
-    } else {
-      newTr.append("<td>0</td>");
-    }
-    // newTr.append(
-    //   "<td><a href='/blog?user_id=" + userData.id + "'>Go to Posts</a></td>"
-    // );
-    // newTr.append(
-    //   "<td><a href='/cms?user_id=" + userData.id + "'>Create a Post</a></td>"
-    // );
-    return newTr;
-  }
+  // function expenseRow(userData) {
+  //   const newTr = $("<tr>");
+  //   newTr.data("user", userData);
+  //   newTr.append("<td>" + userData.name + "</td>");
+  //   if (userData.Posts) {
+  //     newTr.append("<td> " + userData.Posts.length + "</td>");
+  //   } else {
+  //     newTr.append("<td>0</td>");
+  //   }
+  //   // newTr.append(
+  //   //   "<td><a href='/blog?user_id=" + userData.id + "'>Go to Posts</a></td>"
+  //   // );
+  //   // newTr.append(
+  //   //   "<td><a href='/cms?user_id=" + userData.id + "'>Create a Post</a></td>"
+  //   // );
+  //   return newTr;
+  // }
   // function renderUserList(rows) {
   //   budgetList
   //     .children()
@@ -66,6 +66,4 @@ $(document).ready(() => {
   //     userList.prepend(rows);
   //   } else {
   //     renderEmpty();
-    }
-  }
 });
