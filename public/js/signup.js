@@ -1,11 +1,12 @@
+console.log("testing signup.js");
 $(document).ready(() => {
   // Getting references to our form and input
   const signUpForm = $("form.signup");
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
 
-  // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", event => {
+    console.log("HERE");
     event.preventDefault();
     const userData = {
       email: emailInput.val().trim(),
@@ -20,7 +21,7 @@ $(document).ready(() => {
     emailInput.val("");
     passwordInput.val("");
   });
-
+  console.log("I have made it here.");
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(email, password) {
@@ -29,6 +30,7 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
+        console.log("I have now made it to window.location.replace");
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
