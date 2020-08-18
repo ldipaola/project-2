@@ -48,11 +48,17 @@ module.exports = function(app) {
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
-      db.Expenses.update(req.body, {
-        where: {
-          id: req.body.id
+      db.Expenses.update(
+        {
+          amount: req.body.expenseAmount,
+          description: req.body.exampleFormControlInput1
+        },
+        {
+          where: {
+            id: req.body.id
+          }
         }
-      }).then(expenses => {
+      ).then(expenses => {
         res.json(expenses);
       });
     }

@@ -1,10 +1,14 @@
 // eslint-disable-next-line no-empty-function
 $(document).ready(() => {
   // const budgetList = $("chartContainer");
-  const submitBudgetBtn = $("#submitBudgetBtn");
+  const submitBudgetBtn = $("#submitBudget");
   const budget = $("#budget");
+  const submitExpensesBtn = $("#expensesBtn");
+  const expensesAmount = $("#expensesAmount");
+  const exampleFormControlInput1 = $("#exampleFormControlInput1");
   // const renderList = $("#renderList");
   submitBudgetBtn.on("click", event => {
+    console.log("clicked");
     event.preventDefault();
     const userData = {
       userBudget: budget.val().trim()
@@ -16,6 +20,16 @@ $(document).ready(() => {
     budget.val("");
   });
 
+  submitExpensesBtn.on("click", event => {
+    console.log("clicked");
+    event.preventDefault();
+    const userData = {
+      amount: expensesAmount.val().trim(),
+      description: exampleFormControlInput1.val().trim()
+    };
+    uploadExpenses(userData);
+    expensesAmount.val("");
+  });
   function uploadBudget(userBudget) {
     $.post("api/members", {
       userBudget
@@ -23,7 +37,13 @@ $(document).ready(() => {
       window.location.replace("/members");
     });
   }
-
+  function uploadExpenses(Expenses) {
+    $.post("api/members", {
+      Expenses
+    }).then(() => {
+      window.location.replace("/members");
+    });
+  }
   getExpenses();
   function getExpenses() {
     $.get("/api/user_data").then(data => {
