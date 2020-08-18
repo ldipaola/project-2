@@ -20,8 +20,8 @@ FOREIGN KEY (id) REFERENCES users(id)
 
 create table users(
 id int not null auto_increment,
-username varchar(100),
-user_pw varchar(100),
+email varchar(100),
+password varchar(100),
 budget int not null,
 primary key (id)
 );
