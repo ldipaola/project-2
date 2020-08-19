@@ -1,11 +1,17 @@
 // eslint-disable-next-line no-empty-function
 $(document).ready(() => {
   // const budgetList = $("chartContainer");
-  const submitBudgetBtn = $("#submitBudget");
+  const submitBudgetBtn = $("#save-budget");
   const budget = $("#budget");
-  const submitExpensesBtn = $("#expensesBtn");
-  const expensesAmount = $("#expensesAmount");
-  const exampleFormControlInput1 = $("#exampleFormControlInput1");
+  const submitExpensesBtn = $("#save-exp");
+  const amount = $("#amount");
+  const description = $("#description");
+  let categoryId;
+  $("#category-menu").on("change", () => {
+    categoryId = $("#category-menu option:selected").attr("data-id");
+    // const selectCategory = $(this).children("option:selected").attr("id");
+  });
+
   // const renderList = $("#renderList");
   submitBudgetBtn.on("click", event => {
     console.log("clicked");
@@ -24,11 +30,13 @@ $(document).ready(() => {
     console.log("clicked");
     event.preventDefault();
     const userData = {
-      amount: expensesAmount.val().trim(),
-      description: exampleFormControlInput1.val().trim()
+      amount: parseInt(amount.val().trim()),
+      description: description.val().trim(),
+      categoryId: categoryId
     };
     uploadExpenses(userData);
-    expensesAmount.val("");
+    amount.val("");
+    description.val("");
   });
   function uploadBudget(userBudget) {
     $.post("api/members", {
@@ -37,11 +45,9 @@ $(document).ready(() => {
       window.location.replace("/members");
     });
   }
-  function uploadExpenses(Expenses) {
-    $.post("api/members", {
-      Expenses
-    }).then(() => {
-      window.location.replace("/members");
+  function uploadExpenses(userData) {
+    $.post("api/expenses", userData).then(() => {
+      // window.location.replace("/members");
     });
   }
   getExpenses();

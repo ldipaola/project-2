@@ -91,15 +91,15 @@
                 {{!-- Description field --}}
                 <label for="amount">Description</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="amount">
+                  <input type="text" class="form-control" id="description">
                 </div>
 
                 {{!-- Category Dropdown --}}
                 <label for="category-menu">Category</label>
                 <select class="form-control" id="category-menu">
                   <option>--- choose one ---</option>
-                  {{#each categories}}
-                  <option> {{categories}} </option>
+                  {{#each categories }}
+                  <option data-id={{id}}> {{categories}} </option>
                   {{/each}}
                 </select>
               </div>
