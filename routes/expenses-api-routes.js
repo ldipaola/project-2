@@ -1,5 +1,4 @@
 const db = require("../models");
-// eslint-disable-next-line no-unused-vars
 const { request } = require("chai");
 // const Highcharts = require("highchart");
 // // Load module after Highcharts is loaded
