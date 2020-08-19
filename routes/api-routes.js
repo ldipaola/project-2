@@ -62,18 +62,4 @@ module.exports = function(app) {
     );
     res.send(200);
   });
-  app.put("/api/members", (req, res) => {
-    db.Expenses.update(
-      {
-        amount: req.body.expenseAmount,
-        description: req.body.exampleFormControlInput1
-      },
-      {
-        where: {
-          id: req.body.id
-        }
-      }
-    );
-    res.send(200);
-  });
 };
