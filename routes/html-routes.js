@@ -42,9 +42,37 @@ module.exports = function(app) {
           categories: categories.category
         };
       });
-
       console.log(data);
       res.render("members", { categories: data });
     });
+    // .then(() => {
+    //   db.User.findOne({
+    //     where: {
+    //       id: req.user.id
+    //     }
+    //   }).then(user => {
+    //     const budget = {
+    //       userBudget: user.userBudget
+    //     };
+    //   });
+    // });
   });
+  // app.get("/members", isAuthenticated, (req, res) => {
+  //   console.log("=============================================");
+  //   console.log(req.user.id);
+  //   console.log("=============================================");
+  //   db.User.findOne({
+  //     where: {
+  //       id: req.user.id
+  //     }
+  //   }).then(user => {
+  //     console.log("=============================================");
+  //     console.log(user);
+  //     console.log("=============================================");
+  //     const budget = {
+  //       userBudget: user.userBudget
+  //     };
+  //     res.render("members", budget);
+  //   });
+  // });
 };

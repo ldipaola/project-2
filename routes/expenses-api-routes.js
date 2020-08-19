@@ -10,9 +10,14 @@ module.exports = function(app) {
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
-      db.Expenses.findAll({
+      db.User.findAll({
+        include: [
+          {
+            model: db.Expenses
+          }
+        ],
         where: {
-          userId: req.user.id
+          id: req.user.id
         }
       }).then(expenses => {
         res.json(expenses);

@@ -50,4 +50,17 @@ module.exports = function(app) {
       });
     }
   });
+  //route for getting members budget
+  app.post("/api/members", (req, res) => {
+    console.log(req);
+    db.User.update(
+      { userBudget: req.body.userBudget },
+      {
+        where: {
+          id: req.user.id
+        }
+      }
+    );
+    res.send(200);
+  });
 };
