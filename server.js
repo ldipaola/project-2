@@ -53,7 +53,7 @@ db.sequelize
       },
       {
         id: 5,
-        category: "Health & Beauty"
+        category: "Holiday & Travel"
       },
       {
         id: 6,
