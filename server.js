@@ -31,12 +31,44 @@ require("./routes/api-routes.js")(app);
 require("./routes/expenses-api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
+db.sequelize
+  .sync()
+  .then(() => {
+    db.Category.bulkCreate([
+      {
+        id: 1,
+        category: "Health & Beauty"
+      },
+      {
+        id: 2,
+        category: "Groceries"
+      },
+      {
+        id: 3,
+        category: "Food & Drink"
+      },
+      {
+        id: 4,
+        category: "Entertainment"
+      },
+      {
+        id: 5,
+        category: "Holiday & Travel"
+      },
+      {
+        id: 6,
+        category: "Household Utilities"
+      }
+    ]).catch(err => {
+      console.log(err);
+    });
+  })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(
+        "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+      );
+    });
   });
-});
