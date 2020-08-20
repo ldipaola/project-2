@@ -39,7 +39,8 @@ module.exports = function(app) {
       // Mapping returned sequelize object as unable to pass directly to handlebars
       const data = categories.map(categories => {
         return {
-          categories: categories.category
+          categories: categories.category,
+          id: categories.id
         };
       });
 

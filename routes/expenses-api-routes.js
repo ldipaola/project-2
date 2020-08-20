@@ -1,4 +1,5 @@
 const db = require("../models");
+// const { request } = require("chai");
 // const Highcharts = require("highchart");
 // // Load module after Highcharts is loaded
 // require("highcharts/modules/exporting")(Highcharts);
@@ -23,10 +24,19 @@ module.exports = function(app) {
 
   // Post route for adding expenses
   app.post("/api/expenses", (req, res) => {
+    console.log(req.body);
+
+    const expenses = {
+      UserId: req.user.id,
+      description: req.body.description,
+      amount: req.body.amount,
+      CategoryId: req.body.categoryId
+    };
+    console.log(expenses);
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
-      db.Expenses.create(req.body).then(expenses => {
+      db.Expenses.create(expenses).then(expenses => {
         res.json(expenses);
       });
     }
@@ -52,11 +62,17 @@ module.exports = function(app) {
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
-      db.Expenses.update(req.body, {
-        where: {
-          id: req.body.id
+      db.Expenses.update(
+        {
+          amount: req.body.amount,
+          description: req.body.description
+        },
+        {
+          where: {
+            id: req.body.id
+          }
         }
-      }).then(expenses => {
+      ).then(expenses => {
         res.json(expenses);
       });
     }
