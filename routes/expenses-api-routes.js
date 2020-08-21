@@ -10,20 +10,25 @@ module.exports = function(app) {
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
-      db.User.findAll({
-        include: [
-          {
-            model: db.Expenses
-          }
-        ],
-        where: {
-          id: req.user.id
-        }
-      }).then(expenses => {
-        res.json(expenses);
-        // Highcharts.chart("container", { expenses });
+      res.json({
+        userBudget: req.user.userBudget
       });
     }
+    // else {
+    //   db.User.findAll({
+    //     include: [
+    //       {
+    //         model: db.Expenses
+    //       }
+    //     ],
+    //     where: {
+    //       id: req.user.id
+    //     }
+    //   }).then(expenses => {
+    //     res.json(expenses);
+    //     // Highcharts.chart("container", { expenses });
+    //   });
+    // }
   });
 
   // Post route for adding expenses

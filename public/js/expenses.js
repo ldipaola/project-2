@@ -25,15 +25,18 @@ $(document).ready(() => {
     });
   }
 
-  getExpenses();
-  function getExpenses() {
-    $.get("/api/user_data").then(data => {
-      $(".member-name").text(data.email);
-    });
-    $.get("/api/expenses", data => {
-      console.log("------------");
-      console.log(data);
-      console.log("------------");
-    });
-  }
+  // totalBudget();
+  // function totalBudget() {
+  $.get("/api/expenses").then(data => {
+    $("#total-budget").text(data.userBudget);
+    console.log("-----userBudget-------");
+    console.log(data.userBudget);
+    console.log("------------");
+  });
+  //   $.get("/api/expenses", data => {
+  //     console.log("------------");
+  //     console.log(data);
+  //     console.log("------------");
+  //   });
+  // }
 });

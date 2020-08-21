@@ -42,7 +42,7 @@ module.exports = function(app) {
           categories: categories.category
         };
       });
-      console.log(data);
+      console.log("memberdata", data);
       res.render("members", { categories: data });
     });
     // .then(() => {

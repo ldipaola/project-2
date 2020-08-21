@@ -53,6 +53,8 @@ module.exports = function(app) {
   //route for getting members budget
   app.post("/api/members", (req, res) => {
     console.log(req);
+    //method to updating req.user
+    req.session.passport.user.userBudget = req.body.userBudget;
     db.User.update(
       { userBudget: req.body.userBudget },
       {
