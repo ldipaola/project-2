@@ -1,3 +1,5 @@
+//const { combineTableNames } = require("sequelize/types/lib/utils");
+
 // eslint-disable-next-line no-empty-function
 $(document).ready(() => {
   // const budgetList = $("chartContainer");
@@ -13,7 +15,7 @@ $(document).ready(() => {
   });
 
   // const renderList = $("#renderList");
-  submitBudgetBtn.on("click", event => {
+  submitBudgetBtn.on("click", async event => {
     console.log("clicked");
     event.preventDefault();
     const userData = {
@@ -24,6 +26,7 @@ $(document).ready(() => {
     }
     uploadBudget(userData.userBudget);
     budget.val("");
+    $("#budget-dropdown").removeClass("show");
   });
 
   submitExpensesBtn.on("click", event => {
@@ -39,57 +42,27 @@ $(document).ready(() => {
     description.val("");
   });
   function uploadBudget(userBudget) {
-    $.post("api/members", {
-      userBudget
-    }).then(() => {
-      window.location.replace("/members");
+    const updatedBudget = {
+      userBudget: userBudget
+    };
+    $.ajax({
+      method: "PUT",
+      url: "/api/budget",
+      data: updatedBudget
+    }).then(budget => {
+      $("#total-budget").text(updatedBudget.userBudget);
+      console.log(budget);
     });
   }
   function uploadExpenses(userData) {
-    $.post("api/expenses", userData).then(() => {
-      // window.location.replace("/members");
-    });
+    $.post("api/expenses", userData);
   }
-  getExpenses();
-  function getExpenses() {
-    $.get("/api/user_data").then(data => {
-      $(".member-name").text(data.email);
+  getUserData = () => {
+    $.get("/api/expenses").then(data => {
+      $("#total-budget").text(data.budget);
+      console.log(data);
     });
-    // $.get("/api/expenses", data => {
-    //   const rowsToAdd = [];
-    //   for (let i = 0; i < data.length; i++) {
-    //     rowsToAdd.push(expenseRow(data[i]));
-    //   }
-    //   renderUserList(rowsToAdd);
-    //   nameInput.val("");
-    // });
-  }
-  // function expenseRow(userData) {
-  //   const newTr = $("<tr>");
-  //   newTr.data("user", userData);
-  //   newTr.append("<td>" + userData.name + "</td>");
-  //   if (userData.Posts) {
-  //     newTr.append("<td> " + userData.Posts.length + "</td>");
-  //   } else {
-  //     newTr.append("<td>0</td>");
-  //   }
-  //   // newTr.append(
-  //   //   "<td><a href='/blog?user_id=" + userData.id + "'>Go to Posts</a></td>"
-  //   // );
-  //   // newTr.append(
-  //   //   "<td><a href='/cms?user_id=" + userData.id + "'>Create a Post</a></td>"
-  //   // );
-  //   return newTr;
-  // }
-  // function renderUserList(rows) {
-  //   budgetList
-  //     .children()
-  //     .not(":user")
-  //     .remove();
-  //   userContainer.children(".alert").remove();
-  //   if (rows.length) {
-  //     console.log(rows);
-  //     userList.prepend(rows);
-  //   } else {
-  //     renderEmpty();
+  };
+
+  getUserData();
 });
