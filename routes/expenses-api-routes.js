@@ -1,8 +1,4 @@
 const db = require("../models");
-// const { request } = require("chai");
-// const Highcharts = require("highchart");
-// // Load module after Highcharts is loaded
-// require("highcharts/modules/exporting")(Highcharts);
 
 module.exports = function(app) {
   // Get route for getting all expenses
@@ -12,6 +8,7 @@ module.exports = function(app) {
       res.status("401").send("User is unauthenticated.");
     } else {
       db.Expenses.findAll({
+        include: db.Category,
         where: {
           userId: req.user.id
         }

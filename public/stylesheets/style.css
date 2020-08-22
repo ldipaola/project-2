@@ -16,12 +16,13 @@ body {
 }
 
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   height: 30px;
   width: 100%;
   text-align: center;
   color: white;
+  margin-top: 3rem;
 }
 /* End of applied to all pages */
 
@@ -116,9 +117,10 @@ h1, p {
 
 .main-box {
   padding-top: 3rem;
-  background-color: rgb(255, 255, 255, 0.8);
+  padding-bottom: 3rem;
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 8px;
-  height: 100vh;
+  height: 100%;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -198,4 +200,15 @@ h1, p {
   right: 0;
 }
 
+.expensesBox {
+  border: 3px solid #00a3cc;
+  border-radius: 5px;
+  background-color: white;
+  height: 340px;
+  width: 370px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  overflow: auto;
+  padding: 1rem;
+}
 /* End of Members Page styling */

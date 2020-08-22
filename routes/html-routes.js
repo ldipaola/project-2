@@ -32,20 +32,43 @@ module.exports = function(app) {
     res.render("signup");
   });
 
+  // Acts as middleware - can do get or post
+  app.use("/members", (req, res, next) => {
+    db.Expenses.findAll({
+      include: db.Category
+    }).then(response => {
+      const expLog = response.map(response => {
+        return {
+          category: response.Category.category,
+          description: response.description,
+          amount: response.amount
+        };
+      });
+
+      // Pass data to next route
+      res.locals.expLog = expLog;
+      // Calls next route
+      next();
+    });
+  });
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
-    db.Category.findAll({}).then(categories => {
+    db.Category.findAll({}).then(response => {
       // Mapping returned sequelize object as unable to pass directly to handlebars
-      const data = categories.map(categories => {
+      const data = response.map(response => {
         return {
-          categories: categories.category,
-          id: categories.id
+          categories: response.category,
+          id: response.id
         };
       });
 
       console.log(data);
-      res.render("members", { categories: data });
+      res.render("members", {
+        categories: data,
+        expensesLog: res.locals.expLog
+      });
     });
   });
 };
