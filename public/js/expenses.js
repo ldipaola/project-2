@@ -56,13 +56,22 @@ $(document).ready(() => {
   }
   function uploadExpenses(userData) {
     $.post("api/expenses", userData);
+    window.location.reload("/members");
   }
   getUserData = () => {
     $.get("/api/expenses").then(data => {
       $("#total-budget").text(data.budget);
-      console.log(data);
+      const dataAA = data.expenses.map(data => data.amount);
+      const sum = dataAA.reduce(add, 0);
+      console.log(sum);
+      console.log(data.budget);
+      const remainder = data.budget - sum;
+      console.log(remainder);
+      $("#budget-left").text(remainder);
     });
   };
-
+  function add(accumulator, a) {
+    return accumulator + a;
+  }
   getUserData();
 });
