@@ -26,15 +26,12 @@ module.exports = function(app) {
 
   // Post route for adding expenses
   app.post("/api/expenses", (req, res) => {
-    console.log(req.body);
-
     const expenses = {
       UserId: req.user.id,
       description: req.body.description,
       amount: req.body.amount,
       CategoryId: req.body.categoryId
     };
-    console.log(expenses);
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
@@ -76,6 +73,22 @@ module.exports = function(app) {
         }
       ).then(expenses => {
         res.json(expenses);
+      });
+    }
+  });
+
+  app.put("/api/budget", (req, res) => {
+    if (!req.user) {
+      res.status("401").send("User is unauthenticated.");
+    } else {
+      console.log(req.body);
+      req.session.passport.user.userBudget = req.body.userBudget;
+      db.User.update(req.body, {
+        where: {
+          id: req.user.id
+        }
+      }).then(budget => {
+        res.json(budget);
       });
     }
   });

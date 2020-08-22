@@ -51,6 +51,8 @@ module.exports = function(app) {
     }
   });
   app.post("/api/members", (req, res) => {
+    console.log(req);
+    req.session.passport.user.userBudget = req.body.userBudget;
     db.User.update(
       { userBudget: req.body.userBudget },
       {

@@ -13,7 +13,6 @@ $(document).ready(() => {
 
   // Edit Budget Save button
   submitBudgetBtn.on("click", event => {
-    console.log("clicked");
     event.preventDefault();
     const userData = {
       userBudget: budget.val().trim()
@@ -23,6 +22,7 @@ $(document).ready(() => {
     }
     uploadBudget(userData.userBudget);
     budget.val("");
+    $("#budget-dropdown").removeClass("show");
   });
 
   // Add New Expense Save button
@@ -41,15 +41,16 @@ $(document).ready(() => {
 
   // Edit Budget function
   function uploadBudget(userBudget) {
-    $.post("api/members", {
-      userBudget
-    }).then(() => {
-      $(this)
-        .parents(".dropdown")
-        .find("button.dropdown-toggle")
-        .dropdown("toggle");
-
-      window.location.reload("/members");
+    const updatedBudget = {
+      userBudget: userBudget
+    };
+    $.ajax({
+      method: "PUT",
+      url: "/api/budget",
+      data: updatedBudget
+    }).then(budget => {
+      $("#total-budget").text(updatedBudget.userBudget);
+      console.log(budget);
     });
   }
 
@@ -72,8 +73,26 @@ $(document).ready(() => {
     });
   }
 
-  // Highchart JS
+  getUserData = () => {
+    $.get("/api/expenses").then(data => {
+      $("#total-budget").text(data.budget);
+      const dataAA = data.expenses.map(data => data.amount);
+      const sum = dataAA.reduce(add, 0);
+      console.log(sum);
+      console.log(data.budget);
+      const remainder = data.budget - sum;
+      console.log(remainder);
+      $("#budget-left").text(remainder);
+    });
+  };
+
+  function add(accumulator, a) {
+    return accumulator + a;
+  }
   getUserData();
+
+  // Highchart JS
+  getUserExpenses();
   let health = 0;
   let groceries = 0;
   let food = 0;
@@ -81,7 +100,7 @@ $(document).ready(() => {
   let holiday = 0;
   let utilities = 0;
 
-  function getUserData() {
+  function getUserExpenses() {
     $.get("/api/expenses").then(data => {
       for (let i = 0; i < data.expenses.length; i++) {
         if (data.expenses[i].CategoryId === 1) {
