@@ -8,9 +8,6 @@
       Logout
     </a>
   </div>
-  {{!-- <div class="container-fluid">
-    
-  </div> --}}
 </nav>
 
 {{!-- Main Section --}}
@@ -19,7 +16,7 @@
     {{!-- Welcome User --}}
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-12">
           <h2 class="hi-user">Welcome <span class="member-name"></span></h2>
         </div>
       </div>
@@ -28,7 +25,7 @@
     {{!-- Total Budget and Budget Left --}}
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-4">
           <h1>$ <span id="total-budget"></span></h1>
           <p>Total Budget</p>
           <div class="dropdown">
@@ -52,7 +49,7 @@
           </div>
         </div>
 
-        <div class="col-md-3 col-md-offset-3">
+        <div class="col-md-3 col-md-offset-3 col-4 col-offset-4">
           <h1>$ <span id="budget-left"></span></h1>
           <p>Budget Left</p>
         </div>
@@ -64,14 +61,14 @@
       <div class="row">
 
         {{!-- Chart --}}
-        <div class="col-md-8">
+        <div class="col-md-8 col-12">
           <figure class="highcharts-figure">
             <div id="chart-container"></div>
           </figure>
         </div>
 
         {{!-- Add Expense Dropdown Menu Button --}}
-        <div class="col-md-4 dd-box">
+        <div class="col-md-4 col-6 dd-box">
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Add New Expense
@@ -107,9 +104,36 @@
               <button type="submit" id="save-exp" class="btn expBtn"><span>Save</span></button>
               <button type="submit" id="close-exp" class="btn expBtn"><span>Cancel</span></button>
             </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-6 renderExpenses">
+          <div class="expensesBox">
+            <h5 id="log-title">Expenses Log:</h5>
+            {{!-- render all expenses here --}}
+            <table>
+              <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Amount</th>
+              </tr>
+              {{#each expensesLog}}
+              <tr>
+                <td>{{category}}</td>
+                <td>{{description}}</td>
+                <td>{{amount}}</td>
+              </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
 
   </div>
 </main>
 
+<footer>
+  <p>&copy; fourpac. All Rights Reserved 2020.</p>
+</footer>

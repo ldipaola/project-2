@@ -51,7 +51,6 @@ module.exports = function(app) {
     }
   });
   app.post("/api/members", (req, res) => {
-    console.log(req);
     db.User.update(
       { userBudget: req.body.userBudget },
       {
