@@ -16,8 +16,13 @@ module.exports = function(app) {
           userId: req.user.id
         }
       }).then(expenses => {
-        res.json(expenses);
-        // Highcharts.chart("container", { expenses });
+        const userData = {
+          id: req.user.id,
+          email: req.user.email,
+          budget: req.user.userBudget,
+          expenses: [...expenses]
+        };
+        res.json(userData);
       });
     }
   });
