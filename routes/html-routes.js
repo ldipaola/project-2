@@ -64,7 +64,6 @@ module.exports = function(app) {
         };
       });
 
-      console.log(data);
       res.render("members", {
         categories: data,
         expensesLog: res.locals.expLog

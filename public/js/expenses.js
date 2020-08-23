@@ -22,7 +22,6 @@ $(document).ready(() => {
     }
     uploadBudget(userData.userBudget);
     budget.val("");
-    $("#budget-dropdown").removeClass("show");
   });
 
   // Add New Expense Save button
@@ -48,9 +47,13 @@ $(document).ready(() => {
       method: "PUT",
       url: "/api/budget",
       data: updatedBudget
-    }).then(budget => {
+    }).then(() => {
       $("#total-budget").text(updatedBudget.userBudget);
-      console.log(budget);
+      $(this)
+        .parents(".dropdown")
+        .find("button.dropdown-toggle")
+        .dropdown("toggle");
+      window.location.reload("/members");
     });
   }
 
@@ -78,10 +81,7 @@ $(document).ready(() => {
       $("#total-budget").text(data.budget);
       const dataAA = data.expenses.map(data => data.amount);
       const sum = dataAA.reduce(add, 0);
-      console.log(sum);
-      console.log(data.budget);
       const remainder = data.budget - sum;
-      console.log(remainder);
       $("#budget-left").text(remainder);
     });
   };
@@ -177,7 +177,7 @@ $(document).ready(() => {
           type: "pie"
         },
         title: {
-          text: "Spending by Category"
+          text: "Percentage of Expenses"
         },
         credits: {
           enabled: false
