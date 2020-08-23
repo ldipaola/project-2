@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-12">
-          <h2 class="hi-user">Welcome <span class="member-name"></span></h2>
+          <h3 class="hi-user">{{fontawesome-icon icon="user-alt"}} &nbsp;Welcome <span class="member-name"></span></h3>
         </div>
       </div>
     </div>
@@ -25,9 +25,9 @@
     {{!-- Total Budget and Budget Left --}}
     <div class="container">
       <div class="row">
-        <div class="col-md-3 col-4">
-          <h1>$ <span id="total-budget"></span></h1>
-          <p>Total Budget</p>
+        <div class="col-md-4 col-6">
+          <h1>$ <span id="total-budget"></span> {{fontawesome-icon icon="money-check-alt"}}</h1>
+          <p class="budget-label">Total Budget</p>
           <div class="dropdown">
             <button class="btnCustom btnCustom-default dropdown-toggle align-baseline" type="button" id="editDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               edit
@@ -35,7 +35,7 @@
               
             <div id="budget-dropdown" class="dropdown-menu" onClick="event.stopPropagation();" aria-labelledby="editDropDown">
               <div class="form-group">
-                <label for="budget">Enter your budget</label>
+                <label for="budget">Enter your new budget</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <span class="input-group-text" id="inputGroup-sizing-default dollar-sign">$</span>
@@ -49,12 +49,12 @@
           </div>
         </div>
 
-        <div class="col-md-3 col-md-offset-3 col-4 col-offset-4">
-          <h1>$ <span id="budget-left"></span></h1>
-          <p>Budget Left</p>
+        <div class="col-md-4 col-md-offset-4 col-6">
+          <h1>$ <span id="budget-left"></span> {{fontawesome-icon icon="piggy-bank"}} </h1>
+          <p class="budget-label">Budget Left</p>
         </div>
       </div>
-      <hr>
+      <hr id="membersHr">
     </div>
 
     <div class="container second-row">
@@ -71,7 +71,7 @@
         <div class="col-md-4 col-6 dd-box">
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Add New Expense
+              <span>Add New Expense</span>
             </button>
               
             <div class="dropdown-menu spendingInput" onClick="event.stopPropagation();" aria-labelledby="dropdownMenuButton">
@@ -109,7 +109,6 @@
 
         <div class="col-md-4 col-6 renderExpenses">
           <div class="expensesBox">
-            <h5 id="log-title">Expenses Log:</h5>
             {{!-- render all expenses here --}}
             <table>
               <tr>
@@ -121,7 +120,7 @@
               <tr>
                 <td>{{category}}</td>
                 <td>{{description}}</td>
-                <td>{{amount}}</td>
+                <td>$ {{amount}}</td>
               </tr>
               {{/each}}
             </table>
