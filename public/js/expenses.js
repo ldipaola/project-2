@@ -6,6 +6,9 @@ $(document).ready(() => {
   const description = $("#description");
   let categoryId;
 
+  getUserData();
+  getUserExpenses();
+
   // event handler for category options in Add New Expense
   $("#category-menu").on("change", () => {
     categoryId = $("#category-menu option:selected").attr("data-id");
@@ -90,10 +93,8 @@ $(document).ready(() => {
   function add(accumulator, a) {
     return accumulator + a;
   }
-  getUserData();
 
   // Highchart JS
-  getUserExpenses();
   let health = 0;
   let groceries = 0;
   let food = 0;
