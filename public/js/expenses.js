@@ -79,7 +79,7 @@ $(document).ready(() => {
     });
   }
 
-  getUserData = () => {
+  function getUserData() {
     $.get("/api/expenses").then(data => {
       console.log(data);
       $("#total-budget").text(data.budget);
@@ -88,7 +88,7 @@ $(document).ready(() => {
       const remainder = data.budget - sum;
       $("#budget-left").text(remainder);
     });
-  };
+  }
 
   function add(accumulator, a) {
     return accumulator + a;
