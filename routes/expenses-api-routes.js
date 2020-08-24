@@ -3,7 +3,6 @@ const db = require("../models");
 module.exports = function(app) {
   // Get route for getting all expenses
   app.get("/api/expenses", (req, res) => {
-    console.log(req.user);
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
@@ -81,7 +80,6 @@ module.exports = function(app) {
     if (!req.user) {
       res.status("401").send("User is unauthenticated.");
     } else {
-      console.log(req.body);
       req.session.passport.user.userBudget = req.body.userBudget;
       db.User.update(req.body, {
         where: {

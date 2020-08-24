@@ -35,7 +35,10 @@ module.exports = function(app) {
   // Acts as middleware - can do get or post
   app.use("/members", (req, res, next) => {
     db.Expenses.findAll({
-      include: db.Category
+      include: db.Category,
+      where: {
+        userId: req.user.id
+      }
     }).then(response => {
       const expLog = response.map(response => {
         return {

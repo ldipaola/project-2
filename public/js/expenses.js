@@ -78,6 +78,7 @@ $(document).ready(() => {
 
   getUserData = () => {
     $.get("/api/expenses").then(data => {
+      console.log(data);
       $("#total-budget").text(data.budget);
       const dataAA = data.expenses.map(data => data.amount);
       const sum = dataAA.reduce(add, 0);
