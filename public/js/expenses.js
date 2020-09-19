@@ -118,19 +118,20 @@ $(document).ready(() => {
         }
       }
 
-      const chartRounding = (num) => {
-        return Math.round((num + Number.EPSILON) * 100) / 100
-      }
-
+      const chartRounding = num => {
+        return Math.round((num + Number.EPSILON) * 100) / 100;
+      };
 
       const totalExpenses =
         health + groceries + food + entertainment + holiday + utilities;
-      const healthPct = chartRounding(((health / totalExpenses) * 100));
-      const groceriesPct = chartRounding(((groceries / totalExpenses) * 100));
-      const foodPct = chartRounding(((food / totalExpenses) * 100));
-      const entertainmentPct = chartRounding(((entertainment / totalExpenses) * 100));
-      const holidayPct = chartRounding(((holiday / totalExpenses) * 100));
-      const utilitiesPct = chartRounding(((utilities / totalExpenses) * 100));
+      const healthPct = chartRounding((health / totalExpenses) * 100);
+      const groceriesPct = chartRounding((groceries / totalExpenses) * 100);
+      const foodPct = chartRounding((food / totalExpenses) * 100);
+      const entertainmentPct = chartRounding(
+        (entertainment / totalExpenses) * 100
+      );
+      const holidayPct = chartRounding((holiday / totalExpenses) * 100);
+      const utilitiesPct = chartRounding((utilities / totalExpenses) * 100);
 
       const chartData = [
         { name: "Groceries", y: groceriesPct },
@@ -140,7 +141,9 @@ $(document).ready(() => {
         { name: "Health & Beauty", y: healthPct },
         { name: "Household Utilities", y: utilitiesPct }
       ];
-      if (chartData) generateChart(chartData);
+      if (chartData) {
+        generateChart(chartData);
+      }
     });
 
     function generateChart(chartData) {
@@ -166,66 +169,70 @@ $(document).ready(() => {
       });
 
       // Build the chart
-      Highcharts.chart("chart-container", {
-        chart: {
-          backgroundColor: null,
-          style: {
-            fontFamily: "Jura",
-            color: "#000"
+      Highcharts.chart(
+        "chart-container",
+        {
+          chart: {
+            backgroundColor: null,
+            style: {
+              fontFamily: "Jura",
+              color: "#000"
+            },
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
           },
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false
-        },
-        title: {
-          text: "Percentage of Expenses"
-        },
-        credits: {
-          enabled: false
-        },
-        tooltip: {
-          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-        },
-        accessibility: {
-          point: {
-            valueSuffix: "%"
-          }
-        },
-        plotOptions: {
-          pie: {
-            allowPointSelect: true,
-            cursor: "pointer",
-            dataLabels: {
-              enabled: true,
-              format: "<b>{point.name}</b>: {point.percentage:.1f} %",
-              connectorColor: "silver",
-              formatter: function() {
-                if (this.y != 0) {
-                  return this.y +'%';
-                } else {
+          title: {
+            text: "Percentage of Expenses"
+          },
+          credits: {
+            enabled: false
+          },
+          tooltip: {
+            pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
+          },
+          accessibility: {
+            point: {
+              valueSuffix: "%"
+            }
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: "pointer",
+              dataLabels: {
+                enabled: true,
+                format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+                connectorColor: "silver",
+                formatter: function() {
+                  if (this.y !== 0) {
+                    return this.y + "%";
+                  }
                   return null;
                 }
+              }
             }
+          },
+          series: [
+            {
+              type: "pie",
+              name: "Expenses",
+              data: chartData
             }
-          }
+          ]
         },
-        series: [
-          {
-            type: "pie",
-            name: "Expenses",
-            data: chartData
-          }
-        ]
-      }, function(chart) { // on complete
+        chart => {
+          // on complete
 
-        chart.renderer.text('No Data Available', 290, 195)
+          chart.renderer
+            .text("No Data Available", 290, 195)
             .css({
-                color: '#4572A7',
-                fontSize: '16px'
+              color: "#4572A7",
+              fontSize: "16px"
             })
             .add();
-      
-          });
+        }
+      );
     }
   }
 });
